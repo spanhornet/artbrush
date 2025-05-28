@@ -1,5 +1,5 @@
 {
-  "name": "Artbrush",
+  "name": "artbrush",
   "private": true,
   "scripts": {
     "build": "turbo run build",
