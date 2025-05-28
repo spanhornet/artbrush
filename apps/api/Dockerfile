@@ -7,11 +7,11 @@ FROM node:20-alpine AS base
 ENV PNPM_HOME="/root/.pnpm-global"
 ENV PATH="$PNPM_HOME:$PATH"
 
-# Install dependencies
+# Install system dependencies
 RUN apk update
 RUN apk add --no-cache libc6-compat
 
-# Install PNPM
+# Enable PNPM
 RUN corepack enable
 RUN corepack prepare pnpm@9.0.0 --activate
 
@@ -22,9 +22,10 @@ WORKDIR /repo
 
 # Install Turbo
 RUN pnpm config set global-bin-dir $PNPM_HOME && pnpm install turbo --global
+
 COPY . .
 
-# Prune files for the API
+# Prune files
 RUN turbo prune api --docker
 
 FROM base AS installer
@@ -41,7 +42,7 @@ RUN pnpm install --frozen-lockfile
 # Copy full source code
 COPY --from=builder /repo/out/full/ .
 
-# Build the API
+# Build the application
 RUN pnpm turbo run build --filter=api
 
 FROM base AS runner
@@ -60,7 +61,7 @@ ENV PORT=8080
 # Expose port
 EXPOSE 8080
 
-# Copy built files
+# Copy files
 COPY --from=installer /app .
 
 # Change ownership
@@ -69,5 +70,5 @@ RUN chown -R api:applications /app
 # Run as non-root user
 USER api
 
-# Start the API server
+# Start application
 CMD ["node", "./apps/api/dist/index.js"]
