@@ -1,6 +1,6 @@
 ###### 🛠 Build the Docker Image
 
-Build the **Next.js app** Docker image from the root of the monorepo:
+Build the Next.js application Docker image from the root of the monorepo:
 
 ```bash
 docker build -f apps/app/Dockerfile -t artbrush-app .
@@ -34,7 +34,3 @@ docker build --no-cache --progress=plain -f apps/app/Dockerfile -t artbrush-app 
 
 * `--no-cache` forces a full rebuild with no cached layers.
 * `--progress=plain` provides detailed output for debugging.
-
----
-
-Let me know if you want to add support for environment variables, volumes, or a `docker-compose.yml`!

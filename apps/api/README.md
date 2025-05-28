@@ -10,6 +10,8 @@ docker build -f apps/api/Dockerfile -t artbrush-api .
 * `-t artbrush-api` names the image `artbrush-api`.
 * `.` sets the build context to the monorepo root (required for Turborepo and pnpm to function correctly).
 
+---
+
 ###### 🚀 Run the Docker Image
 
 Start the container and expose it on port `8080`:
@@ -19,6 +21,8 @@ docker run -p 8080:8080 artbrush-api
 ```
 
 You can now access the API at [http://localhost:8080](http://localhost:8080).
+
+---
 
 ###### 🧪 Debug the Docker Image
 
