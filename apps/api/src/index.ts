@@ -1,8 +1,9 @@
 import { createServer } from './server';
 
-const port = 8080;
+const environment = process.env.ENVIRONMENT || "DEVELOPMENT";
+const port = process.env.PORT || 8080;
 const app = createServer();
 
 app.listen(port, () => {
-  console.log(`🚀 Server is running on port ${port}`);
+  console.log(`🚀 Server is running on port ${port} in ${environment} mode`);
 });
