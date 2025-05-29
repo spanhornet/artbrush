@@ -11,7 +11,7 @@ export interface FetchOptions extends RequestInit {
 }
 
 // Environment variables
-const environment = process.env.ENVIRONMENT;
+const environment = process.env.ENVIRONMENT || "production";
 
 console.log("Environment", environment);
 
