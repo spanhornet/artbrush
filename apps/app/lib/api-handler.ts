@@ -10,7 +10,7 @@ export interface FetchOptions extends RequestInit {
   query?: Record<string, any>;
 }
 
-const BASE_URL = process.env.ENVIRONMENT === "production" ? "https://artbrush-api.onrender.com/" : "http://localhost:8080";
+const BASE_URL = "https://artbrush-api.onrender.com/"; // TODO: Change to "http://localhost:8080" when developing locally
 
 if (!BASE_URL) {
   throw new Error('NEXT_PUBLIC_API_URL is not set in the environment variables');
