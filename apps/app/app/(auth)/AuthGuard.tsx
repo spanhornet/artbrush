@@ -41,7 +41,7 @@ export function AuthGuard({
     // Case 1: Authentication required but user not authenticated
     if (authRequired && !isAuthenticated) {
       sessionStorage.setItem('redirectAfterLogin', pathname); // Store attempted path for redirect after login
-      router.push('/sign-in'); // Redirect to sign-in page
+      router.push(redirectTo); // Redirect to the specified route
       return;
     }
 

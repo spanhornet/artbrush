@@ -12,25 +12,16 @@ import { AuthGuard } from "./(auth)/AuthGuard";
 // UI Components
 import { Button } from "@/components/ui/button";
 
-// Lucide Icons
-import { LoaderCircle } from 'lucide-react';
-
 export default function Home() {
   const router = useRouter();
 
-  const { user, loading, signOut } = useSession();
+  const { user, signOut } = useSession();
+
+  console.log("User: ", user);
 
   const handleSignOut = async () => {
     await signOut();
     router.push("/sign-in");
-  }
-
-  if (!user || loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <LoaderCircle className="animate-spin h-8 w-8 text-primary" />
-      </div>
-    );
   }
 
   return (

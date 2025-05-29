@@ -26,15 +26,10 @@ export const createServer = (): Express => {
   const app = express();
 
   // CORS middleware
-  const ORIGIN = process.env.NODE_ENV === "production" ? "https://artbrush-app.onrender.com" : "http://localhost:3000";
   const corsMw = cors({
-    origin: ORIGIN,
+    origin: process.env.ENVIRONMENT === "production" ? "https://artbrush-app.onrender.com" : "http://localhost:3000",
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    exposedHeaders: ['Set-Cookie'],
-    maxAge: 60 * 60 * 24,
-    optionsSuccessStatus: 204,
+    methods: ["GET", "POST", "PUT", "DELETE"],
   });
   app.use(corsMw);
 
