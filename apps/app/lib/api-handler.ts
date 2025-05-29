@@ -10,7 +10,20 @@ export interface FetchOptions extends RequestInit {
   query?: Record<string, any>;
 }
 
-const BASE_URL = "http://localhost:8080";
+// Environment variables
+const environment = process.env.ENVIRONMENT;
+
+console.log("Environment", environment);
+
+if (!environment) {
+  throw new Error("ENVIRONMENT is not set in the environment variables");
+}
+
+// Base URL
+const BASE_URL =
+  environment === "development"
+    ? "http://localhost:8080"
+    : "https://artbrush-api.spanhornet.com";
 
 if (!BASE_URL) {
   throw new Error('NEXT_PUBLIC_API_URL is not set in the environment variables');

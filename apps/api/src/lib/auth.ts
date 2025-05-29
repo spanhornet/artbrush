@@ -39,5 +39,21 @@ export const auth = betterAuth({
         required: false,
       },
     },
-  }
+  },
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true,
+      domain: ".spanhornet.com",
+    },
+    defaultCookieAttributes: {
+      secure: true,
+      httpOnly: true,
+      sameSite: "none",
+      partitioned: true,
+    },
+  },
+  trustedOrigins: [
+    "https://artbrush-app.spanhornet.com",
+    "http://localhost:3000",
+  ],
 });

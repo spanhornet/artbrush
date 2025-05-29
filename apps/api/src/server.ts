@@ -1,3 +1,7 @@
+// Dotenv
+import dotenv from "dotenv";
+dotenv.config();
+
 // Express
 import express, { Express, Request, Response, NextFunction } from 'express';
 
@@ -25,9 +29,21 @@ export const logger = pino({
 export const createServer = (): Express => {
   const app = express();
 
+  // Environment variables
+  const environment = process.env.ENVIRONMENT;
+
+  console.log("Environment", environment);
+
+  if (!environment) {
+    throw new Error("ENVIRONMENT is not set in the environment variables");
+  }
+
   // CORS middleware
   const corsMw = cors({
-    origin: "http://localhost:3000",
+    origin:
+      environment === "development"
+        ? "http://localhost:3000"
+        : "https://artbrush-app.spanhornet.com",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   });

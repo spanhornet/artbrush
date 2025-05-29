@@ -1,11 +1,23 @@
+// Dotenv
+import dotenv from "dotenv";
+dotenv.config();
+
 // Server
 import { createServer, logger } from './server';
 
-// Environment Variables
-const environment = process.env.ENVIRONMENT || "DEVELOPMENT";
-const port = process.env.PORT || 8080;
+// Environment variables
+const environment = process.env.ENVIRONMENT;
+const port = process.env.PORT;
 
-// Server
+if (!environment) {
+  throw new Error("ENVIRONMENT is not set in the environment variables");
+}
+
+if (!port) {
+  throw new Error("PORT is not set in the environment variables");
+}
+
+// Create server
 const app = createServer();
 
 app.listen(port, () => {
