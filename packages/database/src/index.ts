@@ -14,10 +14,16 @@ import {
   verifications,
   courses,
   artworks,
-  images
+  images,
+  enrollments,
+  completions
 } from "./schema";
 
-const connectionString = process.env.DATABASE_URL || "HEllo";
+const connectionString = process.env.DATABASE_URL
+
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not set in the environment variables");
+}
 
 // Create client
 const client = postgres(connectionString, { prepare: false });
@@ -30,10 +36,12 @@ export const schema = {
   verifications,
   courses,
   artworks,
-  images
+  images,
+  enrollments,
+  completions
 };
 
-// Export database
+// Create database
 export const db = drizzle(client, { schema });
 
 // Export types
@@ -57,6 +65,12 @@ export type ArtworkInsert = typeof artworks.$inferInsert;
 
 export type Image = typeof images.$inferSelect;
 export type ImageInsert = typeof images.$inferInsert;
+
+export type Enrollment = typeof enrollments.$inferSelect;
+export type EnrollmentInsert = typeof enrollments.$inferInsert;
+
+export type Completion = typeof completions.$inferSelect;
+export type CompletionInsert = typeof completions.$inferInsert;
 
 // Export enumerated types
 export type ImageMimeType = typeof imageMimeTypeEnum.enumValues[number];

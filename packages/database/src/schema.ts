@@ -6,18 +6,17 @@ import {
   timestamp,
   boolean,
   pgEnum,
-  varchar,
-  PgEnum
+  varchar
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
-export const userRoleEnum: PgEnum<["STUDENT", "TEACHER", "ADMINISTRATOR"]> = pgEnum("user_role", [
+export const userRoleEnum = pgEnum("user_role", [
   "STUDENT",
   "TEACHER",
   "ADMINISTRATOR"
 ]);
 
-export const imageMimeTypeEnum: PgEnum<["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml", "image/tiff", "image/bmp", "image/heic", "image/heif", "image/avif"]> = pgEnum("image_mime_type", [
+export const imageMimeTypeEnum = pgEnum("image_mime_type", [
   "image/jpeg",
   "image/png",
   "image/gif",
@@ -83,24 +82,26 @@ export const verifications = pgTable("verifications", {
 export const courses = pgTable("courses", {
   id: text("id").primaryKey(),
   userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  artworkIds: text("artwork_ids").notNull().array().default(sql`ARRAY[]::text[]`),
   title: text("title").notNull(),
   description: text("description").notNull(),
+  isPublished: boolean("is_published").notNull().default(false),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
 export const artworks = pgTable("artworks", {
   id: text("id").primaryKey(),
-  courseId: text("course_id").notNull().references(() => courses.id, { onDelete: "cascade" }),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
   title: text("title").notNull(),
-  description: text("description").notNull(),
   author: text("author").notNull(),
+  description: text("description").notNull(),
+  content: text("content").notNull(),
   images: text("images").notNull().array().default(sql`ARRAY[]::text[]`),
   periodTags: text("period_tags").notNull().array().default(sql`ARRAY[]::text[]`),
   typeTags: text("type_tags").notNull().array().default(sql`ARRAY[]::text[]`),
   collocation: text("collocation"),
   link: text("link"),
-  order: integer("order").notNull().default(0),
   createdAt: timestamp("created_at").notNull().defaultNow(),
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
@@ -115,6 +116,24 @@ export const images = pgTable("images", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+export const enrollments = pgTable("enrollments", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  courseId: text("course_id").notNull().references(() => courses.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
+export const completions = pgTable("completions", {
+  id: text("id").primaryKey(),
+  userId: text("user_id").notNull().references(() => users.id, { onDelete: "cascade" }),
+  artworkId: text("artwork_id").notNull().references(() => artworks.id, { onDelete: "cascade" }),
+  enrollmentId: text("enrollment_id").notNull().references(() => enrollments.id, { onDelete: "cascade" }),
+  isCompleted: boolean("is_completed").notNull().default(false),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 export const schema = {
   users: users,
   sessions: sessions,
@@ -123,4 +142,6 @@ export const schema = {
   courses: courses,
   artworks: artworks,
   images: images,
+  enrollments: enrollments,
+  completions: completions,
 };
