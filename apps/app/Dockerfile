@@ -76,4 +76,4 @@ RUN chown -R app:applications /app
 USER app
 
 # Start application
-CMD ["node", "apps/app/server.js"]
+CMD ["node", "apps/app/server.js", "--port", "$PORT", "--hostname", "0.0.0.0"]
