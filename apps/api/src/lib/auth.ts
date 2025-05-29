@@ -40,4 +40,9 @@ export const auth = betterAuth({
       },
     },
   },
+  cookies: {
+    sameSite: "none",
+    secure: true,
+    httpOnly: true
+  }
 });

@@ -26,8 +26,9 @@ export const createServer = (): Express => {
   const app = express();
 
   // CORS middleware
+  const ORIGIN = process.env.NODE_ENV === "production" ? "https://artbrush-app.onrender.com" : "http://localhost:3000";
   const corsMw = cors({
-    origin: true,
+    origin: ORIGIN,
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -36,7 +37,6 @@ export const createServer = (): Express => {
     optionsSuccessStatus: 204,
   });
   app.use(corsMw);
-  app.options('*splat', corsMw);
 
   // Better-Auth middleware
   app.all("/api/auth/*splat", toNodeHandler(auth));
