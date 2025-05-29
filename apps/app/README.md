@@ -1,4 +1,4 @@
-###### 🛠 Build the Docker Image
+#### 🛠 Build the Docker Image
 
 Build the Next.js application Docker image from the root of the monorepo:
 
@@ -10,9 +10,7 @@ docker build -f apps/app/Dockerfile -t artbrush-app .
 * `-t artbrush-app` names the image `artbrush-app`.
 * `.` sets the build context to the monorepo root (required for Turborepo and pnpm to function correctly).
 
----
-
-###### 🚀 Run the Docker Image
+#### 🚀 Run the Docker Image
 
 Start the container and expose it on port `3000`:
 
@@ -22,9 +20,7 @@ docker run -p 3000:3000 artbrush-app
 
 You can now access the Next.js app at [http://localhost:3000](http://localhost:3000).
 
----
-
-###### 🧪 Debug the Docker Image
+#### 🧪 Debug the Docker Image
 
 To troubleshoot or inspect the build process in detail, use:
 
