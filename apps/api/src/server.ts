@@ -27,7 +27,7 @@ export const createServer = (): Express => {
 
   // CORS middleware
   const corsMw = cors({
-    origin: "https://artbrush-app.onrender.com", // TODO: Change to "http://localhost:3000" when developing locally
+    origin: "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   });

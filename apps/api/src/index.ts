@@ -9,5 +9,5 @@ const port = process.env.PORT || 8080;
 const app = createServer();
 
 app.listen(port, () => {
-  logger.info(`🚀 Server is running at http://localhost:${port} in ${environment} mode`);
+  logger.info(`🚀 Server is running at ${port} in ${environment} mode`);
 });
