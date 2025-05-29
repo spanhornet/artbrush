@@ -43,19 +43,17 @@ export const auth = betterAuth({
   advanced: {
     crossSubDomainCookies: {
       enabled: true,
-      domain: process.env.ENVIRONMENT === "production" ? ".onrender.com" : "localhost",
+      domain: ".onrender.com",
     },
     defaultCookieAttributes: {
-      secure: process.env.ENVIRONMENT === "production",
+      secure: true,
       httpOnly: true,
-      sameSite: process.env.ENVIRONMENT === "production" ? "none" : "lax",
-      partitioned: process.env.ENVIRONMENT === "production",
+      sameSite: "none",
+      partitioned: true,
     },
   },
   trustedOrigins: [
     'https://artbrush-app.onrender.com',
     'https://artbrush-api.onrender.com',
-    'http://localhost:3000',
-    'http://localhost:8080',
   ],
 });
