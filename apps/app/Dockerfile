@@ -77,5 +77,3 @@ USER app
 
 # Start application
 CMD ["node", "apps/app/server.js"]
-
-# docker build --no-cache --progress=plain -f apps/app/Dockerfile -t app-app .

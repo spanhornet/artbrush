@@ -49,7 +49,7 @@ export const createServer = (): Express => {
   app.use(pinoHttp({ logger }));
 
   // Mount routes
-  app.use('/users', usersRouter);
+  app.use('/api/users', usersRouter);
 
   // Health check endpoint
   app.get('/health', (_req: Request, res: Response) => {
