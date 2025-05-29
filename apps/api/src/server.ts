@@ -9,8 +9,8 @@ import pino from 'pino';
 import pinoHttp from 'pino-http';
 
 // Better-Auth
-import { toNodeHandler } from 'better-auth/node';
 import { auth } from './lib/auth';
+import { toNodeHandler } from 'better-auth/node';
 
 // Routes
 import usersRouter from './routes/users.route';
@@ -36,14 +36,14 @@ export const createServer = (): Express => {
     optionsSuccessStatus: 204,
   });
   app.use(corsMw);
-  app.options('*', corsMw);
+  app.options('*splat', corsMw);
+
+  // Better-Auth middleware
+  app.all("/api/auth/*splat", toNodeHandler(auth));
 
   // Middleware
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-
-  // Better-Auth middleware
-  app.all('/api/auth/*', toNodeHandler(auth));
 
   // Logging middleware
   app.use(pinoHttp({ logger }));

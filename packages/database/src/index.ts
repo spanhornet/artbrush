@@ -1,3 +1,7 @@
+// Environment variables
+import dotenv from "dotenv";
+dotenv.config();
+
 // Drizzle ORM
 import { drizzle } from "drizzle-orm/postgres-js";
 
