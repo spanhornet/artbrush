@@ -1,5 +1,7 @@
+// Server
 import { createServer } from './server';
 
+// Environment Variables
 const environment = process.env.ENVIRONMENT || "DEVELOPMENT";
 const port = process.env.PORT || 8080;
 const app = createServer();

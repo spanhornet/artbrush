@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev": "tsc --watch",
     "db:generate": "pnpm drizzle-kit generate --config=./src/drizzle.config.ts",
     "db:migrate": "pnpm drizzle-kit migrate --config=./src/drizzle.config.ts"
@@ -12,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./dist/src/index.js"
   },
   "dependencies": {
     "@repo/eslint-config": "workspace:*",

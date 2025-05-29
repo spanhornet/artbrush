@@ -5,8 +5,8 @@ services:
       dockerfile: apps/app/Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      - ENVIRONMENT=PRODUCTION
+    env_file:
+      - ./apps/app/.env
     depends_on:
       - api
 
@@ -16,5 +16,5 @@ services:
       dockerfile: apps/api/Dockerfile
     ports:
       - "8080:8080"
-    environment:
-      - ENVIRONMENT=PRODUCTION
+    env_file:
+      - ./apps/api/.env

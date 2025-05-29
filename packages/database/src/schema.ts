@@ -6,17 +6,18 @@ import {
   timestamp,
   boolean,
   pgEnum,
-  varchar
+  varchar,
+  PgEnum
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
-export const userRoleEnum = pgEnum("user_role", [
+export const userRoleEnum: PgEnum<["STUDENT", "TEACHER", "ADMINISTRATOR"]> = pgEnum("user_role", [
   "STUDENT",
   "TEACHER",
   "ADMINISTRATOR"
 ]);
 
-export const imageMimeTypeEnum = pgEnum("image_mime_type", [
+export const imageMimeTypeEnum: PgEnum<["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml", "image/tiff", "image/bmp", "image/heic", "image/heif", "image/avif"]> = pgEnum("image_mime_type", [
   "image/jpeg",
   "image/png",
   "image/gif",

@@ -17,11 +17,7 @@ import {
   images
 } from "./schema";
 
-const connectionString = process.env.DATABASE_URL
-
-if (!connectionString) {
-  throw new Error("DATABASE_URL is not set in the environment variables");
-}
+const connectionString = process.env.DATABASE_URL || "HEllo";
 
 // Create client
 const client = postgres(connectionString, { prepare: false });
@@ -35,7 +31,7 @@ export const schema = {
   courses,
   artworks,
   images
-} as const;
+};
 
 // Export database
 export const db = drizzle(client, { schema });
