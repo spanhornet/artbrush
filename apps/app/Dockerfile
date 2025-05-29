@@ -53,9 +53,11 @@ WORKDIR /app
 RUN addgroup -g 1001 applications 
 RUN adduser -u 1001 -G applications -s /bin/sh -D app
 
+# Set environment variables
 ENV NODE_ENV=production
 ENV PORT=3000
 
+# Expose port
 EXPOSE 3000
 
 # Copy full built app

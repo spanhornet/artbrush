@@ -55,7 +55,7 @@ RUN addgroup -g 1001 applications
 RUN adduser -u 1001 -G applications -s /bin/sh -D api
 
 # Set environment variables
-ENV ENVIRONMENT="PRODUCTION"
+ENV NODE_ENV=production
 ENV PORT=8080
 
 # Expose port
