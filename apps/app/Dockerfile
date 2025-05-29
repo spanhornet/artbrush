@@ -47,33 +47,27 @@ RUN pnpm turbo run build --filter=app
 
 FROM base AS runner
 
-# Set working directory
 WORKDIR /app
 
 # Create group and user
 RUN addgroup -g 1001 applications 
 RUN adduser -u 1001 -G applications -s /bin/sh -D app
 
-# Set environment variables
-ENV ENVIRONMENT="PRODUCTION"
+ENV NODE_ENV=production
 ENV PORT=3000
 
-# Expose port
 EXPOSE 3000
 
-# Copy files
-COPY --from=installer /app/apps/app/.next/standalone ./
-COPY --from=installer /app/apps/app/.next/static ./apps/app/.next/static
-COPY --from=installer /app/apps/app/public ./apps/app/public
-COPY --from=installer /app/apps/app/next.config.ts ./apps/app/next.config.ts
-COPY --from=installer /app/apps/app/package.json ./apps/app/package.json
+# Copy full built app
+COPY --from=installer /app/apps/app ./apps/app
 COPY --from=installer /app/node_modules ./node_modules
+COPY --from=installer /app/apps/app/package.json ./package.json
 
-# Change ownership
-RUN chown -R app:applications /app
+# Set correct working dir
+WORKDIR /app/apps/app
 
-# Run as non-root user
+# Switch to non-root user
 USER app
 
-# Start application
-CMD ["node", "apps/app/server.js", "--port", "$PORT", "--hostname", "0.0.0.0"]
+# Start app
+CMD ["pnpm", "start"]
