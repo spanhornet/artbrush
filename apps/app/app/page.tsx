@@ -17,8 +17,6 @@ export default function Home() {
 
   const { user, signOut } = useSession();
 
-  console.log("User: ", user);
-
   const handleSignOut = async () => {
     await signOut();
     router.push("/sign-in");

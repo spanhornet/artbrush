@@ -32,8 +32,6 @@ export const createServer = (): Express => {
   // Environment variables
   const environment = process.env.ENVIRONMENT;
 
-  console.log("Environment", environment);
-
   if (!environment) {
     throw new Error("ENVIRONMENT is not set in the environment variables");
   }

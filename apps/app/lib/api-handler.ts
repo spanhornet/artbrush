@@ -1,7 +1,3 @@
-// Dotenv
-import dotenv from 'dotenv';
-dotenv.config();
-
 export type RequestMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
 export interface FetchOptions extends RequestInit {
@@ -11,23 +7,13 @@ export interface FetchOptions extends RequestInit {
 }
 
 // Environment variables
-const environment = process.env.ENVIRONMENT || "production";
-
-console.log("Environment", environment);
-
-if (!environment) {
-  throw new Error("ENVIRONMENT is not set in the environment variables");
-}
+const environment = process.env.NEXT_PUBLIC_ENVIRONMENT || "production";
 
 // Base URL
 const BASE_URL =
   environment === "development"
     ? "http://localhost:8080"
-    : "https://artbrush-api.spanhornet.com";
-
-if (!BASE_URL) {
-  throw new Error('NEXT_PUBLIC_API_URL is not set in the environment variables');
-}
+    : process.env.NEXT_PUBLIC_API_URL || "https://artbrush-api.spanhornet.com";
 
 export class ApiError extends Error {
   constructor(

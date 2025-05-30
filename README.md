@@ -1,84 +1,42 @@
-# Turborepo starter
+## Artbrush
 
-This Turborepo starter is maintained by the Turborepo core team.
+This project brings together a modern web stack for building full-stack applications. The following is a brief rundown of the technologies used across the backend and frontend, and why they make this setup awesome:
 
-## Using this example
+#### 🔷 TypeScript
+Type-safe JavaScript across the stack — enabling better developer tooling, fewer runtime bugs, and more self-documenting code.
 
-Run the following command:
+#### 📦 PNPM
+A fast, disk-efficient package manager with strict dependency isolation. PNPM helps keep node_modules lean and reproducible across the monorepo.
 
-```sh
-npx create-turbo@latest
-```
+#### 🌪️ Turborepo
+A high-performance build system for JavaScript and TypeScript monorepos. Speeds up development with caching, task pipelines, and remote builds.
 
-## What's inside?
+#### ⚛️ Next.js
+The React framework of choice — supports SSR, API routes, image optimization, and more. It's powering the frontend for fast, SEO-friendly web apps.
 
-This Turborepo includes the following packages/apps:
+#### 🧩 Shadcn/ui
+A beautiful, customizable component library built on Radix UI. It offers accessible and flexible components with a developer-first design system.
 
-### Apps and Packages
+#### 🔌 Express
+A minimalist and performant Node.js web framework for building robust APIs quickly and with fine-grained control.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+#### 🔐 Better-Auth
+An internal authentication solution for managing secure, scalable auth flows across services. Handles tokens, sessions, and user identity with ease.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+#### 🧬 Supabase
+Open-source Firebase alternative with a Postgres core. Provides authentication, database, storage, and real-time subscriptions out of the box.
 
-### Utilities
+#### 🧾 Drizzle ORM
+A type-safe SQL ORM for TypeScript. Offers auto-completion, migrations, and compile-time query validation — no more mystery SQL bugs.
 
-This Turborepo has some additional tools already setup for you:
+#### 🐳 Docker
+Containerization for consistent environments from development to production. Ensures everything runs the same everywhere.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+#### 🌐 Render
+A modern cloud platform to host apps and databases. Simple Git-based deployments with built-in SSL, scaling, and cron jobs.
 
-### Build
+#### 🐖 Porkbun
+A user-friendly domain registrar used for managing custom domains affordably and efficiently.
 
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+#### ☁️ Cloudflare DNS
+Lightning-fast DNS resolution and global distribution. Enhances reliability and reduces latency for domain name lookups.
