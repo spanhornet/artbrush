@@ -37,6 +37,3 @@ A modern cloud platform to host apps and databases. Simple Git-based deployments
 
 #### 🐖 Porkbun
 A user-friendly domain registrar used for managing custom domains affordably and efficiently.
-
-#### ☁️ Cloudflare DNS
-Lightning-fast DNS resolution and global distribution. Enhances reliability and reduces latency for domain name lookups.
